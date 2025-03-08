@@ -1,0 +1,61 @@
+<h1>Employee Payroll Management</h1>
+
+<!-- Add Employee Form -->
+<h2>Add Employee</h2>
+<form (ngSubmit)="addEmployee()">
+  <label>Name:</label>
+  <input type="text" [(ngModel)]="newEmployee.name" name="name" required>
+
+  <label>Department:</label>
+  <input type="text" [(ngModel)]="newEmployee.department" name="department" required>
+
+  <label>Salary:</label>
+  <input type="number" [(ngModel)]="newEmployee.salary" name="salary" required>
+
+  <label>Gender:</label>
+  <select [(ngModel)]="newEmployee.gender" name="gender" required>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label>Start Date:</label>
+  <input type="date" [(ngModel)]="newEmployee.startDate" name="startDate" required>
+
+  <label>Profile Photo URL:</label>
+  <input type="text" [(ngModel)]="newEmployee.profilePhoto" name="profilePhoto">
+
+  <label>Note:</label>
+  <textarea [(ngModel)]="newEmployee.note" name="note"></textarea>
+
+  <button type="submit">Add Employee</button>
+</form>
+
+<!-- Employee List -->
+<h2>Employee List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Salary</th>
+      <th>Gender</th>
+      <th>Start Date</th>
+      <th>Profile Photo</th>
+      <th>Note</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.department }}</td>
+      <td>{{ employee.salary }}</td>
+      <td>{{ employee.gender }}</td>
+      <td>{{ employee.startDate }}</td>
+      <td><img [src]="employee.profilePhoto" alt="Profile Photo" width="50"></td>
+      <td>{{ employee.note }}</td>
+      <td><button (click)="deleteEmployee(employee.id!)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
